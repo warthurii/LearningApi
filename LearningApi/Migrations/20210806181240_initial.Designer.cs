@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LearningApi.Migrations
 {
     [DbContext(typeof(LearningDataContext))]
-    [Migration("20210804144949_Tweaks")]
-    partial class Tweaks
+    [Migration("20210806181240_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,42 @@ namespace LearningApi.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.8")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("LearningApi.Data.LearningItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Competency")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Notes")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Topic")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("LearningItems");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Competency = "Conscious Incompetence",
+                            Topic = "Learn Protobuf"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Competency = "Conscious Competence",
+                            Notes = "Watched some good videos. Tried it out. It's cool",
+                            Topic = "Explore Terraform"
+                        });
+                });
 
             modelBuilder.Entity("LearningApi.Data.TodoItem", b =>
                 {
@@ -48,14 +84,14 @@ namespace LearningApi.Migrations
                             Id = 1,
                             Description = "Fix Angular App",
                             IsRemoved = false,
-                            WhenAdded = new DateTime(2021, 8, 4, 10, 49, 48, 458, DateTimeKind.Local).AddTicks(6082)
+                            WhenAdded = new DateTime(2021, 8, 6, 14, 12, 40, 322, DateTimeKind.Local).AddTicks(4329)
                         },
                         new
                         {
                             Id = 2,
                             Description = "Add a POST to the API",
                             IsRemoved = false,
-                            WhenAdded = new DateTime(2021, 8, 4, 10, 49, 48, 462, DateTimeKind.Local).AddTicks(811)
+                            WhenAdded = new DateTime(2021, 8, 6, 14, 12, 40, 325, DateTimeKind.Local).AddTicks(3014)
                         });
                 });
 #pragma warning restore 612, 618
